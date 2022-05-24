@@ -1,0 +1,54 @@
+<form #myForm="ngForm">
+
+    <div class="mb-4 mt-5">
+        <label for="Full_Name" class="form-label">
+            <h6>Full Name</h6>
+        </label>
+        <input type="text" name="Full_Name"
+            class="form-control" id="Full_Name">
+    </div>
+
+    <div class="mb-4">
+        <input type="hidden" name="_id"
+            class="form-control">
+        <label for="email" class="form-label">
+            <h6>Email address</h6>
+        </label>
+        <input type="text" name="email"
+            class="form-control" id="email">
+    </div>
+    <div class="mb-4">
+        <label for="exampleInputPassword1" class="form-label">
+            <h6>Password</h6>
+        </label>
+        <input type="password" name="password"
+            class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-4">
+        <label for="exampleInputPassword2" class="form-label">
+            <h6>Retype Password</h6>
+        </label>
+        <input type="password" name="retype_password" class="form-control" id="exampleInputPassword2">
+    </div>
+    <div class="mb-4">
+        <!-- Example single danger button -->
+        <div class="btn-group">
+            <button id="selected" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Select Role
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item">Farmer</a></li>
+                <li><a class="dropdown-item">Distributor</a></li>
+                <li><a class="dropdown-item">Retailer</a></li>
+                <li><a class="dropdown-item">Customer</a></li>
+                <li><a class="dropdown-item">Verifier</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <button type="submit" (click)="addUser(myForm)" class="btn btn-success">Next</button>
+    <div class="mt-3">
+        <a class="toggle" routerLink="/login">Already have an account? Click here to login</a>
+    </div>
+</form>
