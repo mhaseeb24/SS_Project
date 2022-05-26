@@ -10,7 +10,7 @@
   "sourceMap": "72:879:7:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "72:879:7:-:0;;;;;;;;",
   "source": "// SPDX-License-Identifier: GPL-3.0\r\npragma solidity >=0.7.0 <0.9.0;\r\n\r\nlibrary Roles {\r\n    struct Record {\r\n        mapping(address => bool) record;\r\n    }\r\n\r\n    function is_member(Record storage rec, address _add)\r\n        internal\r\n        view\r\n        returns (bool)\r\n    {\r\n        // require(rec.record[_add] != false , \"Farmer not added\");\r\n        require(_add != address(0), \"Address cannot be zero address\");\r\n        return rec.record[_add];\r\n    }\r\n\r\n    function add_member(Record storage rec, address _add) internal {\r\n        require(_add != address(0), \"Address cannot be zero\");\r\n        require(!is_member(rec, _add), \"Already Registered\");\r\n        rec.record[_add] = true;\r\n    }\r\n\r\n    function remove_member(Record storage rec, address _add) internal {\r\n        require(_add != address(0), \"Address cannot be zero\");\r\n        require(is_member(rec, _add), \"Member does not exist\");\r\n        rec.record[_add] = false;\r\n    }\r\n}\r\n",
-  "sourcePath": "C:\\Users\\Mhaseeb\\Desktop\\Acha_Name\\contracts\\Roles\\Roles.sol",
+  "sourcePath": "C:\\Users\\Mhaseeb\\Desktop\\SS_Project\\contracts\\Roles\\Roles.sol",
   "ast": {
     "absolutePath": "project:/contracts/Roles/Roles.sol",
     "exportedSymbols": {
@@ -1404,7 +1404,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-05-23T11:48:00.059Z",
+  "updatedAt": "2022-05-25T16:51:23.927Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
