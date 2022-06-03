@@ -15,10 +15,16 @@ var userSchema = new mongoose.Schema({
         required: 'Password can\'t be empty',
     },
 
-    address: {
-        type: String
-    }
+    role: {
+        type: String,
+        required: 'Role can\'t be empty',
+    },
 
+    address: {
+        type: String,
+        required: 'Address can\'t be empty',
+        unique: true
+    }
 });
 
 // Custom validation for email

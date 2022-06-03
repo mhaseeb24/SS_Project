@@ -1,0 +1,32 @@
+<form #myForm="ngForm">
+
+    <div class="mb-4 mt-5">
+        <label for="Product_ID" class="form-label">
+            <h6>Product ID</h6>
+        </label> 
+        <input type="text" name="Product_ID" #Product_ID="ngModel"  [(ngModel)]="commonService.selectedProduct.id"
+            class="form-control" id="Product_ID">
+    </div>
+
+    <div class="mb-4">
+        <input type="hidden" name="_id"  #id="ngModel"  [(ngModel)]="commonService.selectedProduct._id"
+            class="form-control">
+        <label for="safranal_content" class="form-label">
+            <h6>Safranal Content</h6>
+        </label>
+        <input type="text" name="safranal_content" #safranal_content="ngModel"  [(ngModel)]="commonService.selectedProduct.safranal_content"
+            class="form-control" id="safranal_content">
+    </div>
+    <div class="mb-4">
+        <label for="Grade" class="form-label">
+            <h6>Grade</h6>
+        </label>
+        <input type="text" name="Grade" #grade="ngModel"  [(ngModel)]="commonService.selectedProduct.grade"
+            class="form-control" id="grade">
+    </div>
+
+    <button type="submit" (click)="add_product_wrapper(myForm)" class="btn btn-success">Next</button>
+    <div class="mt-3">
+        <a class="toggle" routerLink="/login">Already have an account? Click here to login</a>
+    </div>
+</form>

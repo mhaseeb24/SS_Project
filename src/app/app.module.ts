@@ -23,6 +23,13 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ShopComponent } from './shop/shop.component';
 import { TrackAnAssetComponent } from './track-an-asset/track-an-asset.component';
 import { SupplyChainComponent } from './supply-chain/supply-chain.component';
+import { FarmerPageComponent } from './farmer-page/farmer-page.component';
+import { ConsumerPageComponent } from './consumer-page/consumer-page.component';
+import { DistributorPageComponent } from './distributor-page/distributor-page.component';
+import { RetailerPageComponent } from './retailer-page/retailer-page.component';
+import { VerifierPageComponent } from './verifier-page/verifier-page.component';
+import { AddAProductComponent } from './add-a-product/add-a-product.component';
+import { TrackAProductComponent } from './track-a-product/track-a-product.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +43,13 @@ import { SupplyChainComponent } from './supply-chain/supply-chain.component';
     ShopComponent,
     TrackAnAssetComponent,
     SupplyChainComponent,
+    FarmerPageComponent,
+    ConsumerPageComponent,
+    DistributorPageComponent,
+    RetailerPageComponent,
+    VerifierPageComponent,
+    AddAProductComponent,
+    TrackAProductComponent,
   ],
   imports: [
     BrowserAnimationsModule,

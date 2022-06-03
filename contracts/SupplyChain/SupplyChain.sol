@@ -35,8 +35,9 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         string grade;
     }
 
-    mapping (uint => Product) product_list;
+    mapping (uint => Product) public product_list;
     mapping (uint => bool) existing;
+
 
     modifier harvested(uint _id){
         require(product_list[_id].state == State.Harvested, "Saffron is not harvested");
@@ -118,10 +119,19 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         return false; 
     }
 
-    function harvest_product(uint _id) public  {
+    function add_product(uint _id, uint saf_content, string memory _grade) public
+    {
+        harvest_product(_id, saf_content);
+        dry_product(_id);
+        grading(_id, _grade);
+        packing(_id);
+    }
+
+    function harvest_product(uint _id, uint saf_content) public  {
         require(isFarmer(msg.sender));
         Product memory product;
         product.id = _id;
+        product.safranal_content = saf_content;
         product.farmer = payable(msg.sender);
         product.Current_owner = product.farmer;
         product.distributor = payable(address(0));

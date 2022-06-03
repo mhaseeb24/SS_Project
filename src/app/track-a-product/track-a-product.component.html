@@ -1,0 +1,11 @@
+<form #myForm="ngForm">
+
+    <div class="mb-4 mt-5">
+        <label for="Product_ID" class="form-label">
+            <h6>Product ID</h6>
+        </label> 
+        <input type="text" name="Product_ID" #Product_ID="ngModel"  [(ngModel)]="commonService.selectedProduct.id"
+            class="form-control" id="Product_ID">
+    </div>
+    <button type="submit" (click)="track_product(myForm)" class="btn btn-success">Track</button>
+</form>

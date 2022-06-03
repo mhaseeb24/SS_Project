@@ -11,8 +11,29 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("Role") == 'Farmer')
+    {
+      this.router.navigate(['/farmer-page']);
+    }
+    else if(localStorage.getItem("Role") == 'Distributor')
+    {
+      this.router.navigate(['/distributor-page']);
+    }
+    else if(localStorage.getItem("Role") == 'Retailer')
+    {
+      this.router.navigate(['/retailer-page']);
+    }
+    else if(localStorage.getItem("Role") == 'Consumer')
+    {
+      this.router.navigate(['/consumer-page']);
+    }
+    else if(localStorage.getItem("Role") == 'Verifier')
+    {
+      this.router.navigate(['/verifier-page']);
+    }
   }
 
+  
   go_to_order_scheduling() {
     this.router.navigate(['/order-schedule']);
   }

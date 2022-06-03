@@ -18,14 +18,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  userLogin(myForm: any)
+  async userLogin(myForm: any)
   {
     var curr_user = new User();
     curr_user.email = myForm.email;
     curr_user.password = myForm.password;
     this.commonService.checkUser(curr_user).subscribe((res) =>{
-      localStorage.setItem("userLoggedIn", curr_user.email)
-      console.log("Successfully Logged in");
+      localStorage.setItem("userLoggedIn", curr_user.email);
+      //this.router.navigateByUrl('/dashboard'); 
+    });
+    console.log(curr_user);
+    await this.commonService.get_role(curr_user).subscribe((res) =>{
+      console.log(res);
+      localStorage.setItem("Role", res);
+      this.router.navigateByUrl('/dashboard'); 
     });
 }
 }
