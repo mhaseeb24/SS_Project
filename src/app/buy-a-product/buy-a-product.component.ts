@@ -11,13 +11,12 @@ declare let require: any;
 const artifacts = require('../../../build/contracts/SupplyChain.json');
 
 @Component({
-  selector: 'app-add-a-product',
-  templateUrl: './add-a-product.component.html',
-  styleUrls: ['./add-a-product.component.css'],
+  selector: 'app-buy-a-product',
+  templateUrl: './buy-a-product.component.html',
+  styleUrls: ['./buy-a-product.component.css'],
   providers: [CommonService]
 })
-export class AddAProductComponent implements OnInit {
-
+export class BuyAProductComponent implements OnInit {
   accounts: string[];
   supply_chain_contract: any;
   model = {
@@ -27,11 +26,9 @@ export class AddAProductComponent implements OnInit {
     account: ''
   };
 
-  constructor(private router: Router, public commonService: CommonService, public metamask: MetamaskService, private web3Service: Web3Service, private matSnackBar: MatSnackBar) {
-  }
+  constructor(private router: Router, public commonService: CommonService, public metamask: MetamaskService, private web3Service: Web3Service, private matSnackBar: MatSnackBar) { }
 
-
-    ngOnInit(): void {
+  ngOnInit() {
     this.metamask.watchAccount();
     this.web3Service.artifactsToContract(artifacts)
       .then((contract_instance) => {
@@ -42,22 +39,18 @@ export class AddAProductComponent implements OnInit {
       });
   }
 
-  add_product_wrapper(myForm)
+  buy_product(myForm)
   {
-    this.add_product(myForm.id, myForm.safranal_content, myForm.grade);
+    this.buy_product_util(1);
   }
 
-  
-
-  async add_product(id,safranal_content,grade) {
-    // const person = this.model.account;
-    // console.log(`person address is ${person}`);
-
-    //console.log('Sending coins' + amount + ' to ' + receiver);
-
+  async buy_product_util(id)
+  {
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
-      const transaction = await deployed_contract.add_product.sendTransaction(1,90,"A",10, {from: "0xcb650519e26806E465cE10EdAAF3E8B85ebF8E7E"});
+      const product = await deployed_contract.sell_to_consumer.sendTransaction(1, {from: "0x5226440179D90665f400242161D3da98a9CE7Ba9",value: 10});
+      console.log(`Product has been purchased}
+      `);
     } catch (e) {
       console.log(e);
     }

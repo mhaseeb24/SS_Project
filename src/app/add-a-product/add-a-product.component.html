@@ -25,6 +25,14 @@
             class="form-control" id="grade">
     </div>
 
+    <div class="mb-4">
+        <label for="Price" class="form-label">
+            <h6>Price</h6>
+        </label>
+        <input type="text" name="price" #price="ngModel"  [(ngModel)]="commonService.selectedProduct.price"
+            class="form-control" id="price">
+    </div>
+
     <button type="submit" (click)="add_product_wrapper(myForm)" class="btn btn-success">Next</button>
     <div class="mt-3">
         <a class="toggle" routerLink="/login">Already have an account? Click here to login</a>

@@ -119,12 +119,13 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         return false; 
     }
 
-    function add_product(uint _id, uint saf_content, string memory _grade) public
+    function add_product(uint _id, uint saf_content, string memory _grade,uint _price) public
     {
         harvest_product(_id, saf_content);
         dry_product(_id);
         grading(_id, _grade);
         packing(_id);
+        for_sale(_id, _price);
     }
 
     function harvest_product(uint _id, uint saf_content) public  {
@@ -155,13 +156,14 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         product_list[_id].state = State.Packed;
     }
     
-    function for_sale(uint _id) exist(_id) packed(_id) confirm_farmer(_id) public{
+    function for_sale(uint _id, uint _price) exist(_id) packed(_id) confirm_farmer(_id) public{
         product_list[_id].state = State.For_Sale;
+        product_list[_id].price = _price;
     }
 
-    function get_response_from_verifiers (uint _id) public returns (bool)
+    function get_response_from_verifiers (uint _id, uint safranal_content) public returns (bool)
     {
-        bool confirmation = verify_auto();
+        bool confirmation = verify_auto(_id, safranal_content);
         if(confirmation == false)
         {
             rep_score[product_list[_id].Current_owner] --;
@@ -181,7 +183,7 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         product_list[_id].state = State.with_distributor;
     }
 
-    function sell_to_retialer(uint _id) exist(_id) paid_enough(product_list[_id].price) only_retailer(msg.sender) withDistributor(_id) public payable
+    function sell_to_retailer(uint _id) exist(_id) paid_enough(product_list[_id].price) only_retailer(msg.sender) withDistributor(_id) public payable
     {
         product_list[_id].Current_owner.transfer(product_list[_id].price);
         product_list[_id].Current_owner = payable(msg.sender);
@@ -189,12 +191,81 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         product_list[_id].state = State.with_retailer;
     }
 
-    function sell_to_consumer(uint _id) exist(_id) forSale(_id) paid_enough(product_list[_id].price) only_consumer(msg.sender)  public payable
+    function sell_to_consumer(uint _id) exist(_id) forSale(_id) paid_enough(product_list[_id].price)  only_consumer(msg.sender)  public payable
     {
-        product_list[_id].Current_owner.transfer(product_list[_id].price);
+        product_list[_id].Current_owner.transfer(msg.value);
         product_list[_id].Current_owner = payable(msg.sender);
         product_list[_id].consumer = payable(msg.sender);
         product_list[_id].state = State.with_consumer;
+    }
+
+    function compareStrings(string memory a, string memory b) public view returns (bool) {
+    return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
+}
+
+    function verify_auto(uint _id, uint safranal_content) public returns(bool){
+        reset();
+        select_5_people();
+        for(uint i = 0; i < selected_5_verifiers.length; i++)
+        {
+            uint random_number = generate_random(100, 1);
+            if(random_number >= 20)
+            {
+                if(safranal_content >= 85 && compareStrings(product_list[_id].grade, 'A') == true)
+                {
+                    registered[selected_5_verifiers[i]].verdict = true;
+                }
+
+                else if(safranal_content >= 70 && compareStrings(product_list[_id].grade, 'B') == true)
+                {
+                    registered[selected_5_verifiers[i]].verdict = true;
+                }
+
+                else if(safranal_content >= 60 && compareStrings(product_list[_id].grade, 'C') == true)
+                {
+                    registered[selected_5_verifiers[i]].verdict = true;
+                }
+
+                else if(safranal_content >= 50 && compareStrings(product_list[_id].grade, 'D') == true)
+                {
+                    registered[selected_5_verifiers[i]].verdict = true;
+                }
+
+                else
+                {
+                    registered[selected_5_verifiers[i]].verdict = false;
+                } 
+            }
+
+            else
+            {
+                if(safranal_content < 85 && compareStrings(product_list[_id].grade, 'A') == true)
+                {
+                    registered[selected_5_verifiers[i]].verdict = true;
+                }
+
+                else if(safranal_content < 70 && compareStrings(product_list[_id].grade, 'B') == true)
+                {
+                    registered[selected_5_verifiers[i]].verdict = true;
+                }
+
+                else if(safranal_content < 60 && compareStrings(product_list[_id].grade, 'C') == true)
+                {
+                    registered[selected_5_verifiers[i]].verdict = true;
+                }
+
+                else if(safranal_content < 50 && compareStrings(product_list[_id].grade, 'D') == true)
+                {
+                    registered[selected_5_verifiers[i]].verdict = true;
+                }
+
+                else
+                {
+                    registered[selected_5_verifiers[i]].verdict = false;
+                } 
+            }
+        }
+        return update_score();
     }
 
 }

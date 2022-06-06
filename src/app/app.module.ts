@@ -30,6 +30,7 @@ import { RetailerPageComponent } from './retailer-page/retailer-page.component';
 import { VerifierPageComponent } from './verifier-page/verifier-page.component';
 import { AddAProductComponent } from './add-a-product/add-a-product.component';
 import { TrackAProductComponent } from './track-a-product/track-a-product.component';
+import { BuyAProductComponent } from './buy-a-product/buy-a-product.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { TrackAProductComponent } from './track-a-product/track-a-product.compon
     VerifierPageComponent,
     AddAProductComponent,
     TrackAProductComponent,
+    BuyAProductComponent,
   ],
   imports: [
     BrowserAnimationsModule,

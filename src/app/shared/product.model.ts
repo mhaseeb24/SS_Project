@@ -3,4 +3,5 @@ export class Product {
     id: any;
     safranal_content: any;
     grade: any;
+    price: any;
 }

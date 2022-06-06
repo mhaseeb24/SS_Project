@@ -1,8 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >= 0.6.0;
+pragma experimental ABIEncoderV2;
 
 contract verify_random
 {
+    
     uint random_temp = 0;
     uint public random_num;
     struct person{
@@ -18,29 +20,11 @@ contract verify_random
     uint global_id = 0;
 
     mapping (address => bool) private verifiers;
-    mapping (uint => person) private registered;
+    mapping (uint => person) public registered;
     mapping (address => person) private add_to_person;
 
-    function verify_auto() public returns(bool){
-        reset();
-        select_5_people();
-        for(uint i = 0; i < selected_5_verifiers.length; i++)
-        {
-            uint random_number = generate_random(100, 1);
-            if(random_number >= 30)
-            {
-                registered[selected_5_verifiers[i]].verdict = true; 
-            }
-
-            else
-            {
-                registered[selected_5_verifiers[i]].verdict = false; 
-            }
-        }
-        return update_score();
-    }
-
-    function verify() internal returns(bool){
+    
+    function verify() public returns(bool){
         reset();
         select_5_people();
         // send notification to 5 verifiers and update the verdict of the particular person.
@@ -88,7 +72,7 @@ contract verify_random
         uint new_range = num_max - num_min;
         return (((random_num - 0) * new_range) / old_range) + num_min;
     }
-    function clear_pred_arr() internal 
+    function clear_pred_arr() public 
     {
         uint len = pred_arr.length;
         while(len != 0)
@@ -97,7 +81,7 @@ contract verify_random
             len--;
         }
     }
-    function fill_pred_arr () internal returns(uint)
+    function fill_pred_arr () public returns(uint)
     {
         uint track;
         for(uint i = 0; i < v_members.length; i++)
@@ -120,9 +104,10 @@ contract verify_random
         return pred_arr[ran];
     }
     
-    function select_5_people() internal
+    function select_5_people() public
     {
         require(v_members.length >= 5);
+        
         uint T = 5;
         while(T != 0)
         {
@@ -132,7 +117,7 @@ contract verify_random
         }
     }
 
-    function choose_final_verdict() internal view returns(bool)
+    function choose_final_verdict() public view returns(bool)
     {
         require(selected_5_verifiers.length >= 5);
         uint yes;
@@ -154,17 +139,17 @@ contract verify_random
         return yes >= no;
     }
 
-    function approve() internal
+    function approve() public
     {
         add_to_person[msg.sender].verdict = true;
     }
 
-    function reject() internal
+    function reject() public
     {
         add_to_person[msg.sender].verdict = false;
     } 
 
-    function update_score() internal returns(bool)
+    function update_score() public returns(bool)
     {
         bool review = choose_final_verdict();
         for(uint i = 0; i < selected_5_verifiers.length; i ++)

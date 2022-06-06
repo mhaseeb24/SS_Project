@@ -71,4 +71,9 @@ export class Web3Service {
 
     this.ready = true;
   }
+
+  public toWei(num: Number,curr: string)
+  {
+    return Web3.toWei(num, curr);
+  }
 }

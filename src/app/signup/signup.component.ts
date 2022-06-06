@@ -105,8 +105,13 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  async register_Verifier() {
-    console.log('hello');
+  async register_Verifier(add) {
+    try {
+      const deployed_contract = await this.supply_chain_contract.deployed();
+      const transaction = await deployed_contract.ver_register.sendTransaction({from: add});
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   async add_product(id, grade, safranal_content) {
@@ -158,6 +163,11 @@ export class SignupComponent implements OnInit {
       if(x == 'Consumer')
       {
         this.register_Consumer(add);
+      }
+
+      if(x == 'Verifier')
+      {
+        this.register_Verifier(add);
       }
         this.router.navigateByUrl('/login');
       
