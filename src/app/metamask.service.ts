@@ -24,6 +24,7 @@ export class MetamaskService {
     this.web3Service.accountsObservable.subscribe((accounts) => {
       this.accounts = accounts;
       this.model.account = accounts[0];
+      console.log(this.model.account);
     });
   }
 }

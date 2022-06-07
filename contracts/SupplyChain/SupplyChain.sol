@@ -129,7 +129,7 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
     }
 
     function harvest_product(uint _id, uint saf_content) public  {
-        require(isFarmer(msg.sender));
+        require(isFarmer(msg.sender), "You are not authorized to perform this operation");
         Product memory product;
         product.id = _id;
         product.safranal_content = saf_content;

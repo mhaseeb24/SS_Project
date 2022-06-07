@@ -21,4 +21,5 @@ export class ConsumerPageComponent implements OnInit {
   {
     this.router.navigateByUrl('/buy-a-product');
   }
+
 }

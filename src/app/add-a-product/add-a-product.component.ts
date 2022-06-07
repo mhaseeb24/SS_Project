@@ -19,6 +19,7 @@ const artifacts = require('../../../build/contracts/SupplyChain.json');
 export class AddAProductComponent implements OnInit {
 
   accounts: string[];
+  _add: any;
   supply_chain_contract: any;
   model = {
     amount: 5,
@@ -33,6 +34,7 @@ export class AddAProductComponent implements OnInit {
 
     ngOnInit(): void {
     this.metamask.watchAccount();
+    this._add = this.metamask.model.account; 
     this.web3Service.artifactsToContract(artifacts)
       .then((contract_instance) => {
         this.supply_chain_contract = contract_instance;
@@ -42,14 +44,20 @@ export class AddAProductComponent implements OnInit {
       });
   }
 
-  add_product_wrapper(myForm)
+  add_product_wrapper(myForm: NgForm)
   {
-    this.add_product(myForm.id, myForm.safranal_content, myForm.grade);
+    console.log(`address is : ${this.metamask.model.account}`);
+    let id = ((parseInt(myForm.value.Product_ID)));
+    let saf = ((parseInt(myForm.value.safranal_content)));
+    let grade = ((myForm.value.Grade));
+    let price = ((parseInt(myForm.value.price)));
+    this.add_product(id, saf, grade,price);
+    myForm.reset();
   }
 
   
 
-  async add_product(id,safranal_content,grade) {
+  async add_product(id,safranal_content,grade,price) {
     // const person = this.model.account;
     // console.log(`person address is ${person}`);
 
@@ -57,9 +65,19 @@ export class AddAProductComponent implements OnInit {
 
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
-      const transaction = await deployed_contract.add_product.sendTransaction(1,90,"A",10, {from: "0xcb650519e26806E465cE10EdAAF3E8B85ebF8E7E"});
+      const transaction = await deployed_contract.add_product.sendTransaction(id,safranal_content,grade,price, {from: this.metamask.model.account});
+      const success = document.getElementById("success-alert");
+      success.style.display = 'block';
+      setTimeout(() => {
+        success.style.display = 'none';
+      }, 3000);
     } catch (e) {
       console.log(e);
+      const err = document.getElementById("error-alert");
+      err.style.display = 'block';
+      setTimeout(() => {
+        err.style.display = 'none';
+      }, 3000);
     }
   }
 

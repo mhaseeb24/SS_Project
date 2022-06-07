@@ -39,9 +39,19 @@ export class TrackAProductComponent implements OnInit {
       });
   }
 
-  track_product(myForm)
+  async track_product(myForm: NgForm)
   {
-    this.check_product(myForm.id);
+    try{
+      const div = document.getElementById('div');
+    div.remove();
+    } catch(e){
+      console.log(e);
+    }
+    this.show_loading();
+    let id = ((parseInt(myForm.value.Product_ID)));
+    setTimeout(() => {
+      this.check_product(id);
+    }, 2100);
   }
 
   async check_product(id) {
@@ -52,22 +62,42 @@ export class TrackAProductComponent implements OnInit {
 
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
-      const product = await deployed_contract.product_list.call(1);
-      console.log(`Product ID: ${product.id.toString()}
-      Safranal_content: ${product.safranal_content.toString()}
-      Grade: ${product.grade.toString()}
-      Current Owner: ${product.Current_owner}
-      Farmer Address: ${product.farmer}
-      Distributor Address: ${product.distributor}
-      Retailer Address: ${product.retailer}
-      Consumer Address: ${product.consumer}
-      Product State: ${product.state.toString()}
-      Product Price: ${product.price.toString()}
-      Product Price type: ${parseInt(product.price)}`);
+      const product = await deployed_contract.product_list.call(id);
+      let _id = product.id.toString();
+      if(_id == '0')
+      {
+        document.getElementById('sss').innerText = "0";
+      }
+      let _saf = product.safranal_content.toString();
+      let _grade = product.grade.toString();
+      let current_owner = product.Current_owner.toString();
+      let farmer = product.farmer.toString();
+      let distributor = product.distributor.toString();
+      let retailer = product.retailer.toString();
+      let consumer = product.consumer.toString();
+      let state = product.state.toString();
+      let price = product.price.toString()
+      console.log(`Product ID: ${_id}
+      Safranal_content: ${_saf}
+      Grade: ${_grade}
+      Current Owner: ${current_owner}
+      Farmer Address: ${farmer}
+      Distributor Address: ${distributor}
+      Retailer Address: ${retailer}
+      Consumer Address: ${consumer}
+      Product State: ${state};
+      Product Price: ${price}`);
+      this.show_details(_id, _saf, _grade, current_owner, farmer, distributor, retailer, consumer, state, price);
     } catch (e) {
       console.log(e);
+      const err = document.getElementById("error-alert");
+      err.style.display = 'block';
+      setTimeout(() => {
+        err.style.display = 'none';
+      }, 3000);
     }
   }
+
 
   async verify_product(id, safranal_content: Number) {
     // const person = this.model.account;
@@ -83,5 +113,54 @@ export class TrackAProductComponent implements OnInit {
   catch(e){
     console.log(e);
   }
+}
+
+async show_loading()
+{
+  const div = document.createElement('div');
+  div.className = 'spinner-border text-danger';
+  div.style.marginTop = '10px';
+  div.style.marginLeft = '100px';
+  div.innerHTML = `<center><span class="sr-only"></span>
+  </center>`
+  document.getElementById('spg').appendChild(div);
+  return new Promise (done => setTimeout(() => {
+    div.remove();
+  }, 2000)).then(() => {console.log('hellllll')});
+}
+
+show_details(id, saf, grade, current_owner, farmer, distributor, retailer, consumer, state, price) {
+  let div; 
+  
+  div = document.createElement('div');
+  div.setAttribute("id", "div");
+
+  const main = document.getElementById('main-content');
+  main.style.height = '120vh';
+
+  div.className = 'row';
+  div.style.marginTop = '10px'
+
+  div.innerHTML = `
+   <center> <h1 style = "color: olive"> Product Details </h1>
+    <p class = "text-primary"> Product ID: ${id} </p> <br>
+    <p class = "text-primary"> Safranal_content: ${saf} </p> <br>
+    <p class = "text-primary"> Grade: ${grade} </p> <br>
+    <p class = "text-danger"> Current Owner: ${current_owner} </p> <br>
+    <p class = "text-info"> Farmer Address: ${farmer} </p> <br>
+    <p class = "text-primary"> Distributor Address: ${distributor} </p><br>
+    <p class = "text-primary"> Retailer Address: ${retailer} </p> <br>
+    <p class = "text-primary"> Consumer Address: ${consumer} </p> <br>
+    <p class = "text-primary"> Product State: ${state} </p> <br>
+    <p class = "text-primary"> Product Price: ${price} </p> <br>
+  </center>`;
+
+  document.getElementById('spg').appendChild(div);
+}
+delay(n) {  
+  return new Promise(done => {
+    setTimeout(() => {
+    }, n);
+  });
 }
 }
