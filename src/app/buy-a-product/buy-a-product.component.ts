@@ -18,6 +18,7 @@ const artifacts = require('../../../build/contracts/SupplyChain.json');
 })
 export class BuyAProductComponent implements OnInit {
   accounts: string[];
+  _add: any;
   supply_chain_contract: any;
   model = {
     amount: 5,
@@ -30,6 +31,7 @@ export class BuyAProductComponent implements OnInit {
 
   ngOnInit() {
     this.metamask.watchAccount();
+    this._add = this.metamask.model.account;
     this.web3Service.artifactsToContract(artifacts)
       .then((contract_instance) => {
         this.supply_chain_contract = contract_instance;
@@ -41,14 +43,21 @@ export class BuyAProductComponent implements OnInit {
 
   buy_product(myForm)
   {
-    this.buy_product_util(1);
+    let id = myForm.value.Product_ID;
+    id = parseInt(id);
+    this.buy_product_util(id);
   }
 
-  async buy_product_util(id)
+  async buy_product_util(id: Number)
   {
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
-      const product = await deployed_contract.sell_to_consumer.sendTransaction(1, {from: "0x5226440179D90665f400242161D3da98a9CE7Ba9",value: 10});
+      const product_details = await deployed_contract.product_list.call(id);
+      let price = product_details.price.toString();
+      let _id = product_details.id.toString();
+      _id = parseInt(_id);
+      price = parseInt(price);
+      const product = await deployed_contract.sell_to_consumer.sendTransaction(_id, {from: this.metamask.model.account,value: price});
       console.log(`Product has been purchased}
       `);
     } catch (e) {

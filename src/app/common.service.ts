@@ -26,4 +26,8 @@ export class CommonService {
   checkUser(user: User){
     return this.http.post(this.baseURL + 'authenticate', user);
   }
+
+  get_name_from_address(user: User){
+    return this.http.post(this.baseURL + 'get_name_from_address', user,{responseType: 'text'});
+  }
 }

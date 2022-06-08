@@ -53,4 +53,27 @@ module.exports.retrieve_role =  (req, res, next) => {
       }, 1000);
 }
 
+module.exports.get_name_from_address =  (req, res, next) => {
+    let username;
+    if(req.body.address == '0x0000000000000000000000000000000000000000')
+    {
+        res.send('NA');
+    }
+
+    else{
+    user.find({ address: req.body.address}, function (err, docs) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            username = docs[0]._doc.name;
+            console.log(username);
+        }
+    });
+    setTimeout(function(){
+        console.log("waited for seconds");
+        res.send(username);
+      }, 1000);}
+}
+
 

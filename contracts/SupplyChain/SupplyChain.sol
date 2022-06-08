@@ -268,4 +268,19 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         return update_score();
     }
 
+    function get_rep_score(address _add) public view returns (uint)
+    {
+        return rep_score[_add];
+    }
+
+    function decrement_rep_score(address _add) public
+    {
+        rep_score[_add] --;
+    }
+
+    function increment_rep_score(address _add) public
+    {
+        rep_score[_add] ++;
+    }
+
 }
