@@ -31,6 +31,8 @@ import { VerifierPageComponent } from './verifier-page/verifier-page.component';
 import { AddAProductComponent } from './add-a-product/add-a-product.component';
 import { TrackAProductComponent } from './track-a-product/track-a-product.component';
 import { BuyAProductComponent } from './buy-a-product/buy-a-product.component';
+import { SellToDistributorComponent } from './sell-to-distributor/sell-to-distributor.component';
+import { SellToRetailerComponent } from './sell-to-retailer/sell-to-retailer.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { BuyAProductComponent } from './buy-a-product/buy-a-product.component';
     AddAProductComponent,
     TrackAProductComponent,
     BuyAProductComponent,
+    SellToDistributorComponent,
+    SellToRetailerComponent,
   ],
   imports: [
     BrowserAnimationsModule,

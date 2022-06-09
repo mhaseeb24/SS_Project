@@ -191,7 +191,7 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         product_list[_id].state = State.with_retailer;
     }
 
-    function sell_to_consumer(uint _id) exist(_id) forSale(_id) paid_enough(product_list[_id].price)  only_consumer(msg.sender)  public payable
+    function sell_to_consumer(uint _id) exist(_id) paid_enough(product_list[_id].price)  only_consumer(msg.sender)  public payable
     {
         product_list[_id].Current_owner.transfer(msg.value);
         product_list[_id].Current_owner = payable(msg.sender);

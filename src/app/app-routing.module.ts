@@ -17,6 +17,8 @@ import { VerifierPageComponent } from './verifier-page/verifier-page.component';
 import { AddAProductComponent } from './add-a-product/add-a-product.component';
 import { TrackAProductComponent } from './track-a-product/track-a-product.component';
 import { BuyAProductComponent } from './buy-a-product/buy-a-product.component';
+import { SellToDistributorComponent } from './sell-to-distributor/sell-to-distributor.component';
+import { SellToRetailerComponent } from './sell-to-retailer/sell-to-retailer.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'/dashboard', pathMatch: 'full'},
@@ -34,7 +36,9 @@ const routes: Routes = [
   {path: 'verifier-page', component: VerifierPageComponent},
   {path: 'add-product', component: AddAProductComponent},
   {path: 'track-product', component: TrackAProductComponent},
-  {path: 'buy-a-product', component: BuyAProductComponent}
+  {path: 'buy-a-product', component: BuyAProductComponent},
+  {path: 'sell-to-distributor', component: SellToDistributorComponent},
+  {path: 'sell-to-retailer', component: SellToRetailerComponent}
 ];
 
 @NgModule({

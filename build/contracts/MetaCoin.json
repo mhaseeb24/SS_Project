@@ -7094,10 +7094,44 @@
       },
       "address": "0x0A3d6CBCf8e705e750B123A496FFe4FeAb47533C",
       "transactionHash": "0xa451db068133238826eff06f83bf828b9cb0911879417254f8ef4ed0efddcb2c"
+    },
+    "1654777651254": {
+      "events": {
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        }
+      },
+      "links": {
+        "ConvertLib": "0x3fc0EAFF7Bf2931e902974Ae406413cdA86C3276"
+      },
+      "address": "0x19484A2f8f9c78714e0bb6B3c64158c004443d2f",
+      "transactionHash": "0x8dcf5028c3502aa97173b0261cd9e4f4d5363d42e6aa8e385f4622eae7660c29"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2022-06-08T11:19:59.324Z",
+  "updatedAt": "2022-06-09T13:08:22.706Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
