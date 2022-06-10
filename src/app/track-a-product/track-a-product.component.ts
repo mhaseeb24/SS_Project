@@ -183,4 +183,9 @@ export class TrackAProductComponent implements OnInit {
       }, n);
     });
   }
+
+  get_tx(myForm) {
+    let id = myForm.value.Product_ID;
+    this.commonService.get_transaction(id).subscribe((res) => {console.log(res[1])});
+  }
 }

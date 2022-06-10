@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {User} from './shared/user.model';
+import { Tx } from './shared/tx.model';
 import { Product } from './shared/product.model';
 
 @Injectable({
@@ -9,8 +10,10 @@ import { Product } from './shared/product.model';
 export class CommonService {
   selectedUser: User = new User;
   selectedProduct: Product = new Product;
+  selectedTx: Tx = new Tx;
   users: User[] = [];
   products: Product[] = [];
+  transactions: Tx[] = [];
   readonly baseURL = "http://localhost:3000/api/";
 
   constructor(private http: HttpClient) { }
@@ -29,5 +32,15 @@ export class CommonService {
 
   get_name_from_address(user: User){
     return this.http.post(this.baseURL + 'get_name_from_address', user,{responseType: 'text'});
+  }
+  
+  store_transaction(tx)
+  {
+    return this.http.post(this.baseURL + 'store_transaction', tx);
+  }
+
+  get_transaction(id)
+  {
+    return this.http.post(this.baseURL + 'retrieve_transaction', {id});
   }
 }

@@ -57,13 +57,20 @@ export class BuyAProductComponent implements OnInit {
       let _id = product_details.id.toString();
       _id = parseInt(_id);
       price = parseInt(price);
-      const product = await deployed_contract.sell_to_consumer.sendTransaction(_id, {from: this.metamask.model.account,value: price});
+      const product = await deployed_contract.sell_to_consumer.sendTransaction(_id, {from: this.metamask.model.account, to:"0xB333f864874F81d871D5751aEA90FDD5790a3f9c", value: price});
       console.log(`Product has been purchased}
       `);
+      let tx = {id: id.toString(), sender: product.receipt.from.toString(), receiver: product.receipt.to.toString(), hash: product.receipt.transactionHash.toString(), amount: price.toString()};
+      this.store_tx(tx);
       console.log(product);
     } catch (e) {
       console.log(e);
     }
+  }
+
+  store_tx(tx)
+  {
+    this.commonService.store_transaction(tx).subscribe((res) => {console.log('added to data-base')});
   }
 
 }

@@ -61,7 +61,10 @@ export class AddAProductComponent implements OnInit {
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
       const transaction = await deployed_contract.add_product.sendTransaction(id,safranal_content,grade,price, {from: this.metamask.model.account});
+
       const success = document.getElementById("success-alert");
+      let tx = {id: id.toString(), sender: transaction.receipt.from.toString(), receiver: transaction.receipt.to.toString(), hash: transaction.receipt.transactionHash.toString(), amount: transaction.receipt.gasUsed.toString()};
+      this.store_tx(tx);
       success.style.display = 'block';
       setTimeout(() => {
         success.style.display = 'none';
@@ -74,6 +77,11 @@ export class AddAProductComponent implements OnInit {
         err.style.display = 'none';
       }, 3000);
     }
+  }
+
+  store_tx(tx)
+  {
+    this.commonService.store_transaction(tx).subscribe((res) => {console.log('added to data-base')});
   }
 
 }

@@ -5,6 +5,7 @@ const _ = require('lodash');
 const product = mongoose.model('product');
 
 module.exports.store_transaction = (req, res, next) => {
+    console.log("hello")
     var Product = new product();
     Product.id = req.body.id;
     Product.sender = req.body.sender;
@@ -26,19 +27,20 @@ module.exports.store_transaction = (req, res, next) => {
 
 module.exports.retrieve_transaction =  (req, res, next) => {
     let response;
+    console.log("maha haseeb");
     product.find({ id: req.body.id}, function (err, docs) {
         if (err){
             console.log(err);
         }
         else{
             response = docs;
-            console.log(docs);
+            console.log(docs._doc);
         }
     });
     setTimeout(function(){
         console.log("waited for seconds");
         res.send(response);
-      }, 1000);
+      }, 2000);
 }
 
 

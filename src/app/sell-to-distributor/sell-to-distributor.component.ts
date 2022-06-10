@@ -60,8 +60,15 @@ export class SellToDistributorComponent implements OnInit {
       const product = await deployed_contract.sell_to_distributor.sendTransaction(_id, new_price, {from: this.metamask.model.account,value: price});
       console.log(`Product has been purchased}
       `);
+      let tx = {id: id.toString(), sender: product.receipt.from.toString(), receiver: product.receipt.to.toString(), hash: product.receipt.transactionHash.toString(), amount: price.toString()};
+      this.store_tx(tx);
     } catch (e) {
       console.log(e);
     }
+  }
+
+  store_tx(tx)
+  {
+    this.commonService.store_transaction(tx).subscribe((res) => {console.log('added to data-base')});
   }
 }
