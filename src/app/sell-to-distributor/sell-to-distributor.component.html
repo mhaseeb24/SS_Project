@@ -7,6 +7,13 @@
         <input type="text" name="Product_ID" #Product_ID="ngModel"  [(ngModel)]="commonService.selectedProduct.id"
             class="form-control" id="Product_ID">
     </div>
+    <div class="mb-4 mt-5">
+        <label for="new_price" class="form-label">
+            <h6>New Price</h6>
+        </label> 
+        <input type="text" name="new_price" #new_price="ngModel"  [(ngModel)]="commonService.selectedProduct.price"
+            class="form-control" id="new_price">
+    </div>
     <button type="submit" (click)="buy_product(myForm)" class="btn btn-success">Buy</button>
 </form>
 

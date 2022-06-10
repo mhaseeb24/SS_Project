@@ -58,11 +58,6 @@ export class AddAProductComponent implements OnInit {
   
 
   async add_product(id,safranal_content,grade,price) {
-    // const person = this.model.account;
-    // console.log(`person address is ${person}`);
-
-    //console.log('Sending coins' + amount + ' to ' + receiver);
-
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
       const transaction = await deployed_contract.add_product.sendTransaction(id,safranal_content,grade,price, {from: this.metamask.model.account});

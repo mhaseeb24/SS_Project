@@ -6,3 +6,4 @@ mongoose.connect('mongodb://localhost:27017/DB', (err) => {
 });
 
 require('./user.model');
+require('./product.model');

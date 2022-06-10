@@ -176,19 +176,21 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         return confirmation;
     }
 
-    function sell_to_distributor(uint _id) exist(_id) forSale(_id) only_distributor(msg.sender) paid_enough(product_list[_id].price) public payable{
+    function sell_to_distributor(uint _id, uint new_price) exist(_id) forSale(_id) only_distributor(msg.sender) paid_enough(product_list[_id].price) public payable{
         product_list[_id].Current_owner.transfer(product_list[_id].price);
         product_list[_id].Current_owner = payable(msg.sender);
         product_list[_id].distributor = payable(msg.sender);
         product_list[_id].state = State.with_distributor;
+        product_list[_id].price = new_price; 
     }
 
-    function sell_to_retailer(uint _id) exist(_id) paid_enough(product_list[_id].price) only_retailer(msg.sender) withDistributor(_id) public payable
+    function sell_to_retailer(uint _id, uint new_price) exist(_id) paid_enough(product_list[_id].price) only_retailer(msg.sender) withDistributor(_id) public payable
     {
         product_list[_id].Current_owner.transfer(product_list[_id].price);
         product_list[_id].Current_owner = payable(msg.sender);
         product_list[_id].retailer = payable(msg.sender);
         product_list[_id].state = State.with_retailer;
+        product_list[_id].price = new_price;
     }
 
     function sell_to_consumer(uint _id) exist(_id) paid_enough(product_list[_id].price)  only_consumer(msg.sender)  public payable

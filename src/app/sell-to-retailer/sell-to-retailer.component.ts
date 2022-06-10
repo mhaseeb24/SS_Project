@@ -42,11 +42,13 @@ export class SellToRetailerComponent implements OnInit {
   buy_product(myForm)
   {
     let id = myForm.value.Product_ID;
+    let new_price = myForm.value.new_price;
     id = parseInt(id);
-    this.buy_product_util(id);
+    new_price = parseInt(new_price);
+    this.buy_product_util(id, new_price);
   }
 
-  async buy_product_util(id: Number)
+  async buy_product_util(id: Number, new_price: Number)
   {
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
@@ -55,7 +57,7 @@ export class SellToRetailerComponent implements OnInit {
       let _id = product_details.id.toString();
       _id = parseInt(_id);
       price = parseInt(price);
-      const product = await deployed_contract.sell_to_retailer.sendTransaction(_id, {from: this.metamask.model.account,value: price});
+      const product = await deployed_contract.sell_to_retailer.sendTransaction(_id, new_price, {from: this.metamask.model.account,value: price});
       console.log(`Product has been purchased}
       `);
     } catch (e) {

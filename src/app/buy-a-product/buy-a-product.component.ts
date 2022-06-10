@@ -60,6 +60,7 @@ export class BuyAProductComponent implements OnInit {
       const product = await deployed_contract.sell_to_consumer.sendTransaction(_id, {from: this.metamask.model.account,value: price});
       console.log(`Product has been purchased}
       `);
+      console.log(product);
     } catch (e) {
       console.log(e);
     }
