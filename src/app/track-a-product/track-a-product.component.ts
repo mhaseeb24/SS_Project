@@ -98,15 +98,17 @@ export class TrackAProductComponent implements OnInit {
   }
 
 
-  async verify_product(id, safranal_content: Number) {
+  async verify_product(myForm) {
     // const person = this.model.account;
     // console.log(`person address is ${person}`);
 
     //console.log('Sending coins' + amount + ' to ' + receiver);
+    let id = parseInt(myForm.value.Product_ID);
+    //let safranal_content = parseInt(myForm.value.safranal_content);
 
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
-      const verification = await deployed_contract.get_response_from_verifiers.sendTransaction(1, 10, { from: "0xE67c568243321181ad0034Fe59e7C7424FD0722F" });
+      const verification = await deployed_contract.get_response_from_verifiers.sendTransaction(id, 10, { from: this.metamask.model.account });
       console.log(verification);
     }
     catch (e) {
@@ -187,5 +189,17 @@ export class TrackAProductComponent implements OnInit {
   get_tx(myForm) {
     let id = myForm.value.Product_ID;
     this.commonService.get_transaction(id).subscribe((res) => {console.log(res[1])});
+  }
+
+  async dummy(){
+    try {
+      const deployed_contract = await this.supply_chain_contract.deployed();
+      const product = await deployed_contract.verify_auto.sendTransaction(2, 70, {from: this.metamask.model.account});
+      console.log(product
+      );
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 }
