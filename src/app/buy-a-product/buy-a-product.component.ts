@@ -55,15 +55,16 @@ export class BuyAProductComponent implements OnInit {
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
       const product_details = await deployed_contract.product_list.call(id);
+      let curr_owner = product_details.Current_owner.toString();
       let price = product_details.price.toString();
       let _id = product_details.id.toString();
       _id = parseInt(_id);
       price = parseInt(price);
-      const product = await deployed_contract.sell_to_consumer.sendTransaction(_id,{from: this.metamask.model.account});
+      const product = await deployed_contract.sell_to_consumer.sendTransaction(_id,{from: this.metamask.model.account, value: price});
       console.log(`Product has been purchased}
       `);
       
-      let tx = {id: id.toString(), sender: product.receipt.from.toString(), receiver: product.receipt.to.toString(), hash: product.receipt.transactionHash.toString(), amount: price.toString()};
+      let tx = {id: id.toString(), sender: product.receipt.from.toString(), receiver: curr_owner, hash: product.receipt.transactionHash.toString(), amount: price.toString()};
       this.store_tx(tx);
       console.log(product);
     } catch (e) {

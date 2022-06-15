@@ -22,4 +22,9 @@ export class ConsumerPageComponent implements OnInit {
     this.router.navigateByUrl('/buy-a-product');
   }
 
+  go_to_verify_page()
+  {
+    this.router.navigateByUrl('/verify');
+  }
+
 }

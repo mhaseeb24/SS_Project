@@ -166,42 +166,47 @@ contract SupplyChain is Farmer, Distributor, Retailer, Consumer, verify_random{
         bool confirmation = verify_auto(_id, safranal_content);
         if(confirmation == false)
         {
-            rep_score[product_list[_id].Current_owner] --;
+            if(rep_score[product_list[_id].Current_owner] > 0)
+                rep_score[product_list[_id].Current_owner] --;
         }
 
         else
         {
             rep_score[product_list[_id].Current_owner] ++;
         }
+        flag = confirmation;
         return confirmation;
     }
 
     function sell_to_distributor(uint _id, uint new_price) exist(_id) forSale(_id) only_distributor(msg.sender) paid_enough(product_list[_id].price) public payable{
-        product_list[_id].Current_owner.transfer(product_list[_id].price);
+        address payable myAddress = product_list[_id].Current_owner;
         product_list[_id].Current_owner = payable(msg.sender);
         product_list[_id].distributor = payable(msg.sender);
         product_list[_id].state = State.with_distributor;
+        myAddress.transfer(product_list[_id].price);
         product_list[_id].price = new_price; 
     }
 
     function sell_to_retailer(uint _id, uint new_price) exist(_id) paid_enough(product_list[_id].price) only_retailer(msg.sender) withDistributor(_id) public payable
     {
-        product_list[_id].Current_owner.transfer(product_list[_id].price);
+        address payable myAddress = product_list[_id].Current_owner;
         product_list[_id].Current_owner = payable(msg.sender);
         product_list[_id].retailer = payable(msg.sender);
         product_list[_id].state = State.with_retailer;
+        myAddress.transfer(product_list[_id].price);
         product_list[_id].price = new_price;
     }
 
     function sell_to_consumer(uint _id) exist(_id) paid_enough(product_list[_id].price)  only_consumer(msg.sender)  public payable
     {
-        product_list[_id].Current_owner.transfer(msg.value);
+        address payable myAddress = product_list[_id].Current_owner;
         product_list[_id].Current_owner = payable(msg.sender);
         product_list[_id].consumer = payable(msg.sender);
+        myAddress.transfer(product_list[_id].price);
         product_list[_id].state = State.with_consumer;
     }
 
-    function compareStrings(string memory a, string memory b) public view returns (bool) {
+    function compareStrings(string memory a, string memory b) public pure returns (bool) {
     return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
 }
 

@@ -126,7 +126,7 @@ export class TrackAProductComponent implements OnInit {
     document.getElementById('spg').appendChild(div);
     return new Promise(done => setTimeout(() => {
       div.remove();
-    }, 2000)).then(() => { console.log('hellllll') });
+    }, 2000)).then(() => { });
   }
 
   async show_details(id, saf, grade, current_owner, farmer, distributor, retailer, consumer, state, price) {
@@ -191,15 +191,5 @@ export class TrackAProductComponent implements OnInit {
     this.commonService.get_transaction(id).subscribe((res) => {console.log(res[1])});
   }
 
-  async dummy(){
-    try {
-      const deployed_contract = await this.supply_chain_contract.deployed();
-      const product = await deployed_contract.verify_auto.sendTransaction(2, 70, {from: this.metamask.model.account});
-      console.log(product
-      );
-    }
-    catch (e) {
-      console.log(e);
-    }
-  }
+ 
 }

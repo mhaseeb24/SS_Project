@@ -7,6 +7,7 @@ contract verify_random
     
     uint random_temp = 0;
     uint public random_num;
+    bool public flag = false;
     struct person{
         uint id;
         uint rep_score;

@@ -50,7 +50,7 @@ export class AddAProductComponent implements OnInit {
     let id = ((parseInt(myForm.value.Product_ID)));
     let saf = ((parseInt(myForm.value.safranal_content)));
     let grade = ((myForm.value.Grade));
-    let price = ((parseInt(myForm.value.price)));
+    let price = ((myForm.value.price));
     this.add_product(id, saf, grade,price);
     myForm.reset();
   }

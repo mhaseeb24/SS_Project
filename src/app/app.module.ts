@@ -33,6 +33,7 @@ import { TrackAProductComponent } from './track-a-product/track-a-product.compon
 import { BuyAProductComponent } from './buy-a-product/buy-a-product.component';
 import { SellToDistributorComponent } from './sell-to-distributor/sell-to-distributor.component';
 import { SellToRetailerComponent } from './sell-to-retailer/sell-to-retailer.component';
+import { VerificationPageComponent } from './verification-page/verification-page.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SellToRetailerComponent } from './sell-to-retailer/sell-to-retailer.com
     BuyAProductComponent,
     SellToDistributorComponent,
     SellToRetailerComponent,
+    VerificationPageComponent,
   ],
   imports: [
     BrowserAnimationsModule,

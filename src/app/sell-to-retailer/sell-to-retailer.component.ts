@@ -44,23 +44,24 @@ export class SellToRetailerComponent implements OnInit {
     let id = myForm.value.Product_ID;
     let new_price = myForm.value.new_price;
     id = parseInt(id);
-    new_price = parseInt(new_price);
+    new_price = new_price.toString();
     this.buy_product_util(id, new_price);
   }
 
-  async buy_product_util(id: Number, new_price: Number)
+  async buy_product_util(id: Number, new_price)
   {
     try {
       const deployed_contract = await this.supply_chain_contract.deployed();
       const product_details = await deployed_contract.product_list.call(id);
+      let curr_owner = product_details.Current_owner.toString();
       let price = product_details.price.toString();
       let _id = product_details.id.toString();
       _id = parseInt(_id);
       price = parseInt(price);
-      const product = await deployed_contract.sell_to_retailer.sendTransaction(_id, new_price, {from: this.metamask.model.account,value: price});
+      const product = await deployed_contract.sell_to_retailer.sendTransaction(_id, BigInt(new_price), {from: this.metamask.model.account,value: price});
       console.log(`Product has been purchased}
       `);
-      let tx = {id: id.toString(), sender: product.receipt.from.toString(), receiver: product.receipt.to.toString(), hash: product.receipt.transactionHash.toString(), amount: price.toString()};
+      let tx = {id: id.toString(), sender: product.receipt.from.toString(), receiver: curr_owner, hash: product.receipt.transactionHash.toString(), amount: price.toString()};
       this.store_tx(tx);
     } catch (e) {
       console.log(e);
