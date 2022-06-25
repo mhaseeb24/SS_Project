@@ -1,0 +1,13 @@
+form {
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+    form {
+        padding-top: 50px;
+    }
+}

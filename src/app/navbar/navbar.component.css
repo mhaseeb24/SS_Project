@@ -2,3 +2,14 @@
     width: 100%;
     height: 100%;
 }
+
+@media only screen and (max-width: 768px) {
+    .saf-nav {
+        background: rgb(255 127 79);
+        text-align: center;
+        padding-right: 30px;
+        padding-bottom: 10px;
+        z-index: 100;
+        border: 1px solid #d50e0e;
+    }
+}

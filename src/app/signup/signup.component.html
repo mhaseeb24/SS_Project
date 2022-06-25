@@ -1,28 +1,24 @@
 <form #myForm="ngForm">
 
-    <div class="mb-4 mt-5">
+    <div class="mb-4">
         <label for="Full_Name" class="form-label">
             <h6>Full Name</h6>
         </label>
-        <input type="text" name="Full_Name" #name="ngModel"  [(ngModel)]="commonService.selectedUser.name"
-            class="form-control" id="Full_Name">
+        <input type="text" name="Full_Name" #name="ngModel" [(ngModel)]="commonService.selectedUser.name" class="form-control" id="Full_Name">
     </div>
 
     <div class="mb-4">
-        <input type="hidden" name="_id"  #id="ngModel"  [(ngModel)]="commonService.selectedUser._id"
-            class="form-control">
+        <input type="hidden" name="_id" #id="ngModel" [(ngModel)]="commonService.selectedUser._id" class="form-control">
         <label for="email" class="form-label">
             <h6>Email address</h6>
         </label>
-        <input type="text" name="email" #email="ngModel"  [(ngModel)]="commonService.selectedUser.email"
-            class="form-control" id="email">
+        <input type="text" name="email" #email="ngModel" [(ngModel)]="commonService.selectedUser.email" class="form-control" id="email">
     </div>
     <div class="mb-4">
         <label for="exampleInputPassword1" class="form-label">
             <h6>Password</h6>
         </label>
-        <input type="password" name="password" #password="ngModel"  [(ngModel)]="commonService.selectedUser.password"
-            class="form-control" id="exampleInputPassword1">
+        <input type="password" name="password" #password="ngModel" [(ngModel)]="commonService.selectedUser.password" class="form-control" id="exampleInputPassword1">
     </div>
     <div class="mb-4">
         <label for="exampleInputPassword2" class="form-label">
@@ -33,7 +29,7 @@
     <div class="mb-4">
         <!-- Example single danger button -->
         <div class="btn-group">
-                Select Role
+            Select Role
             <select name="role" id="role">
                 <option value="Farmer">Farmer</option>
                 <option value="Distributor">Distributor</option>

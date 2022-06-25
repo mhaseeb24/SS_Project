@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private location: Location) { }
 
   ngOnInit(): void {
     this.userService.user.subscribe((user)=>{
@@ -42,6 +43,9 @@ export class AppComponent implements OnInit {
           default:
             break;
         }
+      }
+      else{
+        if(this.location.path().split('?')[0] == '/signup') url = '/signup'
       }
       this.router.navigate([url])
     });
