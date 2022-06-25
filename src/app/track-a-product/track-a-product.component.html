@@ -1,22 +1,21 @@
-<div  class="alert alert-danger" id = "error-alert" role="alert" style="display: none">
+<div class="alert alert-danger" id="error-alert" role="alert" style="display: none">
     Product does not exist!
 </div>
-<div class="container" id="spg">
-<form #myForm="ngForm">
+<div id="spg">
+    <form #myForm="ngForm">
 
-    <div class="mb-4 mt-5">
-        <label for="Product_ID" class="form-label">
+        <div class="mb-4 mt-5">
+            <label for="Product_ID" class="form-label">
             <h6>Product ID</h6>
         </label>
-        <input type="text" name="Product_ID" #Product_ID="ngModel" [(ngModel)]="commonService.selectedProduct.id"
-            class="form-control" id="Product_ID">
+            <input type="text" name="Product_ID" #Product_ID="ngModel" [(ngModel)]="commonService.selectedProduct.id" class="form-control" id="Product_ID">
+        </div>
+        <button type="submit" (click)="track_product(myForm)" class="btn btn-success">Product Details </button>
+        <button type="submit" (click)="get_tx(myForm)" class="btn btn-success mx-2">Show History</button>
+
+        <button type="submit" (click)="get_response_from_verifiers(myForm)" class="btn btn-success mx-2">Verify</button>
+    </form>
+    <div class="container bg-primary justify-content-center">
+
     </div>
-    <button type="submit" (click)="track_product(myForm)" class="btn btn-success">Product Details </button>
-    <button  type="submit" (click)="get_tx(myForm)" class="btn btn-success mx-2">Show History</button>
-
-    <button  type="submit" (click)="get_response_from_verifiers(myForm)" class="btn btn-success mx-2">Verify</button>
-</form>
-<div class="container bg-primary justify-content-center">
-
-</div>
 </div>

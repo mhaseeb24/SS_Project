@@ -58,7 +58,7 @@ export class SellToRetailerComponent implements OnInit {
       let _id = product_details.id.toString();
       _id = parseInt(_id);
       price = parseInt(price);
-      const product = await deployed_contract.sell_to_retailer.sendTransaction(_id, BigInt(new_price), {from: this.metamask.model.account,value: price});
+      const product = await deployed_contract.sell_to_retailer.sendTransaction(_id,  BigInt(new_price), {from: this.metamask.model.account,value: price});
       console.log(`Product has been purchased}
       `);
       let tx = {id: id.toString(), sender: product.receipt.from.toString(), receiver: curr_owner, hash: product.receipt.transactionHash.toString(), amount: price.toString()};

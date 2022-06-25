@@ -37,10 +37,10 @@ const routes: Routes = [
   {path: 'verifier-page', component: VerifierPageComponent},
   {path: 'add-product', component: AddAProductComponent},
   {path: 'track-product', component: TrackAProductComponent},
-  {path: 'buy-a-product', component: BuyAProductComponent},
+  {path: 'buy-product', component: BuyAProductComponent},
   {path: 'sell-to-distributor', component: SellToDistributorComponent},
   {path: 'sell-to-retailer', component: SellToRetailerComponent},
-  {path: 'verify', component: VerificationPageComponent}
+  {path: 'verify-product', component: VerificationPageComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,32 @@
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.app-footer {
+    height: 15vh;
+}
+
+::ng-deep router-outlet+* {
+    height: 77vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 768px) {
+     ::ng-deep router-outlet+* {
+        overflow: scroll;
+    }
+}
+
+.nav-bar {
+    height: 8vh;
+    width: 100vw;
+    display: flex;
+}

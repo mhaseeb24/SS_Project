@@ -1,26 +1,33 @@
-<div  class="alert alert-danger" id = "error-alert" role="alert" style="display: none">
-    Product does not exist!
+<div class="alert-wrapper">
+    <div class="alert alert-danger" id="error-alert" role="alert" style="display: none">
+        The Prdocut Content Is Not Of Good Quality
+        <br>
+        <a class="nav-link active" aria-current="page" routerLink="/dashboard">Home</a>
+    </div>
+    <div class="alert alert-success" id="success-alert" role="alert" style="display: none">
+        The Product Quality Is Good!
+        <br>
+        <a class="nav-link active" aria-current="page" routerLink="/dashboard">Proceed</a>
+    </div>
 </div>
-<div class="container" id="spg">
-<form #myForm="ngForm">
+<div id="spg">
+    <form #myForm="ngForm">
 
-    <div class="mb-4 mt-5">
-        <label for="Product_ID" class="form-label">
+        <div class="mb-4 mt-5">
+            <label for="Product_ID" class="form-label">
             <h6>Product ID</h6>
         </label>
-        <input type="text" name="Product_ID" #Product_ID="ngModel" [(ngModel)]="commonService.selectedProduct.id"
-            class="form-control" id="Product_ID">
-    </div>
-    <div class="mb-4 mt-5">
-        <label for="safranal_content" class="form-label">
+            <input type="text" name="Product_ID" #Product_ID="ngModel" [(ngModel)]="commonService.selectedProduct.id" class="form-control" id="Product_ID">
+        </div>
+        <div class="mb-4 mt-5">
+            <label for="safranal_content" class="form-label">
             <h6>Safranal Content</h6>
         </label>
-        <input type="text" name="safranal_content" #safranal_content="ngModel" [(ngModel)]="commonService.selectedProduct.safranal_content"
-            class="form-control" id="safranal_content">
-    </div>
-    <button type="submit" (click)="get_response_from_verifiers(myForm)" class="btn btn-success">Submit</button>
-</form>
-<div class="container bg-primary justify-content-center">
+            <input type="text" name="safranal_content" #safranal_content="ngModel" [(ngModel)]="commonService.selectedProduct.safranal_content" class="form-control" id="safranal_content">
+        </div>
+        <button type="submit" (click)="get_response_from_verifiers(myForm)" class="btn btn-success">Submit</button>
+    </form>
+    <div class="container bg-primary justify-content-center">
 
-</div>
+    </div>
 </div>

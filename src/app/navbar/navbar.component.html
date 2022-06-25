@@ -1,28 +1,42 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/dashboard"> <h3>SMS</h3></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/dashboard">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Features
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/my-orders">My Orders</a></li>
-              <li><a class="dropdown-item" routerLink="/shop">Shop</a></li>
-              <li><a class="dropdown-item" routerLink="/track-an-asset">Track an asset</a></li>
+        <a class="navbar-brand" routerLink="/dashboard">
+            <h3>SMS</h3>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/dashboard">Home</a>
+                </li>
+                <li *ngIf="!this.userLoggedIn">
+                    <span class="nav-link active" aria-current="page">Features</span>
+                </li>
+                <li class="nav-item dropdown" *ngIf="this.userLoggedIn">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Features
+          </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" *ngIf="userRole == 'Farmer'" routerLink="/add-product">
+                          Add a Product</a>
+                        </li>
+                        <li><a class="dropdown-item" *ngIf="userRole == 'Distributor' || userRole == 'Retailer' || userRole == 'Customer'" routerLink="/buy-product">Buy a Product</a></li>
+                        <li><a class="dropdown-item" *ngIf="userRole == 'Farmer' || userRole == 'Distributor' || userRole == 'Retailer' || userRole == 'Customer'" routerLink="/track-product">Track a Product</a></li>
+                        <li><a class="dropdown-item" *ngIf="userRole == 'Distributor' || userRole == 'Retailer' || userRole == 'Customer'" routerLink="/verify-product">Verify a Product</a></li>
+                        <li><a class="dropdown-item" *ngIf="userRole == 'Customer'" routerLink="/verifier-page">Verify a Transaction</a></li>
+                        <!-- <li><a class="dropdown-item" routerLink="/my-orders">My Orders</a></li> -->
+                        <!-- <li><a class="dropdown-item" routerLink="/my-orders">My Orders</a></li>
+                        <li><a class="dropdown-item" routerLink="/shop">Shop</a></li>
+                        <li><a class="dropdown-item" routerLink="/track-an-asset">Track an asset</a></li> -->
+                    </ul>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="/about-us">About us</a>
+                    </li>
             </ul>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="/about-us">About us</a>
-            </li>
-        </ul>
-        <button class="btn-danger" (click)="display_login()">Login</button>
-      </div>
+            <button *ngIf="!this.userLoggedIn" class="btn-danger" (click)="display_login()">Login</button>
+            <button *ngIf="this.userLoggedIn" class="btn-danger" (click)="logout()">Logout</button>
+        </div>
     </div>
-  </nav>
+</nav>

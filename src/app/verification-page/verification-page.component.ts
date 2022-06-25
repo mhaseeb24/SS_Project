@@ -65,6 +65,14 @@ export class VerificationPageComponent implements OnInit {
         else
         {
           console.log(res);
+          if(!!res){
+            const success = document.getElementById("success-alert");
+            success.style.display = 'block';
+          }
+          else{
+            const err = document.getElementById("error-alert");
+            err.style.display = 'block';
+          }
         }
       });
     }

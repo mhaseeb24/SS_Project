@@ -29,15 +29,9 @@ export class TrackAProductComponent implements OnInit {
 
   constructor(private router: Router, public commonService: CommonService, public metamask: MetamaskService, private web3Service: Web3Service, private matSnackBar: MatSnackBar) { }
 
+
   ngOnInit() {
-    this.metamask.watchAccount();
-    this.web3Service.artifactsToContract(artifacts)
-      .then((contract_instance) => {
-        this.supply_chain_contract = contract_instance;
-        this.supply_chain_contract.deployed().then(deployed => {
-          console.log(deployed);
-        });
-      });
+    // this.setProductDiv()
   }
 
   async track_product(myForm: NgForm) {
@@ -157,25 +151,51 @@ export class TrackAProductComponent implements OnInit {
     div = document.createElement('div');
     div.setAttribute("id", "div");
 
-    const main = document.getElementById('main-content');
-    main.style.height = '120vh';
+    // const main = document.getElementById('main-content');
+    // main.style.height = '120vh';
 
     div.className = 'row';
     div.style.marginTop = '10px'
 
     div.innerHTML = `
-   <center> <h1 style = "color: olive"> Product Details </h1>
-    <p class = "text-primary"> Product ID: ${id} </p> <br>
-    <p class = "text-primary"> Safranal_content: ${saf} </p> <br>
-    <p class = "text-primary"> Grade: ${grade} </p> <br>
-    <p class = "text-danger"> Current Owner: ${curr_name} </p> <br>
-    <p class = "text-info"> Farmer Address: ${f_name} (rated ${f_score}) </p> <br>
-    <p class = "text-primary"> Distributor Address: ${d_name} (rated ${d_score}) </p><br>
-    <p class = "text-primary"> Retailer Address: ${r_name} (rated ${r_score}) </p> <br>
-    <p class = "text-primary"> Consumer Address: ${c_name} </p> <br>
-    <p class = "text-primary"> Product State: ${state} </p> <br>
-    <p class = "text-primary"> Product Price: ${price} </p> <br>
-  </center>`;
+    <center><table class="table">
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Safranal Content</th>
+        <th>Grade</th>
+        <th>Current Owner</th>
+        <th>Farmer Address</th>
+        <th>Farmer Rating</th>
+        <th>Distributor Address</th>
+        <th>Distributor Rating</th>
+        <th>Retailer Address</th>
+        <th>Retailer Rating</th>
+        <th>Consumer Address</th>
+        <th>Product State</th>
+        <th>Product Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>${id}</td>
+        <td>${saf}</td>
+        <td>${grade}</td>
+        <td>${curr_name}</td>
+        <td>${f_name}</td>
+        <td>${f_score}</td>
+        <td>${d_name}</td>
+        <td>${d_score}</td>
+        <td>${r_name}</td>
+        <td>${r_score}</td>
+        <td>${c_name}</td>
+        <td>${state}</td>
+        <td>${price}</td>
+      </tr>
+    </tbody>
+  </table>
+  </center>
+  `;
 
     document.getElementById('spg').appendChild(div);}, 1100);
   }
@@ -189,6 +209,67 @@ export class TrackAProductComponent implements OnInit {
   get_tx(myForm) {
     let id = myForm.value.Product_ID;
     this.commonService.get_transaction(id).subscribe((res) => {console.log(res[1])});
+  }
+
+  setProductDiv(){
+
+    let div;
+
+    div = document.createElement('div');
+    div.setAttribute("id", "div");
+
+    div.className = 'row';
+    div.style.marginTop = '10px'
+
+    div.innerHTML = `
+    <center><table class="table">
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Safranal Content</th>
+        <th>Grade</th>
+        <th>Current Owner</th>
+        <th>Farmer Address</th>
+        <th>Farmer Rating</th>
+        <th>Distributor Address</th>
+        <th>Distributor Rating</th>
+        <th>Retailer Address</th>
+        <th>Retailer Rating</th>
+        <th>Consumer Address</th>
+        <th>Product State</th>
+        <th>Product Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>Current Name</td>
+        <td>Farmer Name</td>
+        <td>1</td>
+        <td>Dis Name</td>
+        <td>1</td>
+        <td>Ret Name</td>
+        <td>1</td>
+        <td>Cus Name</td>
+        <td>MH</td>
+        <td>123</td>
+      </tr>
+    </tbody>
+  </table>
+  </center>
+  `;
+
+    document.getElementById('spg').appendChild(div);
+    this.metamask.watchAccount();
+    this.web3Service.artifactsToContract(artifacts)
+      .then((contract_instance) => {
+        this.supply_chain_contract = contract_instance;
+        this.supply_chain_contract.deployed().then(deployed => {
+          console.log(deployed);
+        });
+      });
   }
 
  

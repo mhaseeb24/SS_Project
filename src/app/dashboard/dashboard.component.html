@@ -1,60 +1,35 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="https://i.picsum.photos/id/170/1024/512.jpg?hmac=0rnrMT_fBHyb8QStJib5c1YufsmGps41POKhzN4BUY4" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://i.picsum.photos/id/170/1024/512.jpg?hmac=0rnrMT_fBHyb8QStJib5c1YufsmGps41POKhzN4BUY4" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://i.picsum.photos/id/170/1024/512.jpg?hmac=0rnrMT_fBHyb8QStJib5c1YufsmGps41POKhzN4BUY4" class="d-block w-100" alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+<div class="slideshow-container">
 
-  <div class="continer d-flex justify-content-center align-items-center">
-    <div class="card me-4 mt-4" style="width: 18rem;">
-      <img src="../../assets/images/saffron-1.jpg" alt="Couldn't load image">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+    <div class="mySlides fader">
+        <div class="numbertext">1 / 3</div>
+        <img src="../../assets/images/saffron-1.jpeg" style="width:100%">
+        <div class="text">Blockchain for saffron <br> supply chain solutions</div>
     </div>
 
-    <div class="card me-4 mt-4" style="width: 18rem;">
-      <img src="../../assets/images/saffron-1.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+    <div class="mySlides fader">
+        <div class="numbertext">2 / 3</div>
+        <img src="../../assets/images/saffron-1.jpeg" style="width:100%">
+        <div class="text">Blockchain for saffron <br> supply chain solutions</div>
     </div>
 
-    <div class="card me-4 mt-4" style="width: 18rem;">
-      <img src="../../assets/images/saffron-1.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+    <div class="mySlides fader">
+        <div class="numbertext">3 / 3</div>
+        <img src="../../assets/images/saffron-1.jpeg" style="width:100%">
+        <div class="text">
+            Blockchain for saffron <br> supply chain solutions
+            <br>
+            <span class="sub-heading">Resolve issues faster. Build trust and stronger relationships. Businesses are strengthening supply chain networks with IBM Blockchain.
+            </span>
+        </div>
     </div>
-    <div>
-      <button class="btn btn-primary" (click)="go_to_testpage()">More</button>
-    </div>
-  </div>
+    <a class="prev" (click)="plusSlides(-1)">❮</a>
+    <a class="next" (click)="plusSlides(1)">❯</a>
 
 
+    <div style="text-align:center">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</div>
+<br>

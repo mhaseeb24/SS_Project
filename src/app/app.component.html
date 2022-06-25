@@ -1,5 +1,7 @@
-<app-navbar></app-navbar>
-<div class="container-fluid d-flex justify-content-center align-items-center" id="main-content" style="height: 80vh;">
-    <router-outlet></router-outlet>
+<div class="app-wrapper">
+    <app-navbar class="nav-bar"></app-navbar>
+    <!-- <div class="container-fluid d-flex justify-content-center align-items-center" id="main-content" style="height: 80vh;"> -->
+    <router-outlet class="main-content"></router-outlet>
+    <!-- </div> -->
+    <app-footer class="app-footer"></app-footer>
 </div>
-<app-footer></app-footer>

@@ -68,14 +68,14 @@ export class AddAProductComponent implements OnInit {
       success.style.display = 'block';
       setTimeout(() => {
         success.style.display = 'none';
-      }, 3000);
+      }, 7000);
     } catch (e) {
       console.log(e);
       const err = document.getElementById("error-alert");
       err.style.display = 'block';
       setTimeout(() => {
         err.style.display = 'none';
-      }, 3000);
+      }, 7000);
     }
   }
 

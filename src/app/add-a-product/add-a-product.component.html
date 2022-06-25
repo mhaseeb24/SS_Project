@@ -1,42 +1,39 @@
-<div  class="alert alert-danger" id = "error-alert" role="alert" style="display: none">
-   Error
+<div class="alert-wrapper">
+    <div class="alert alert-danger" id="error-alert" role="alert" style="display: none">
+        There Was An Error Adding Your Product. Please Contact Support
+    </div>
+    <div class="alert alert-success" id="success-alert" role="alert" style="display: none">
+        Your Product Was Added Successfully!
+    </div>
 </div>
-<div  class="alert alert-success" id = "success-alert" role="alert" style="display: none">
-    Success
- </div>
 <form #myForm="ngForm">
 
     <div class="mb-4 mt-5">
         <label for="Product_ID" class="form-label">
             <h6>Product ID</h6>
-        </label> 
-        <input type="text" name="Product_ID" #Product_ID="ngModel"  [(ngModel)]="commonService.selectedProduct.id"
-            class="form-control" id="Product_ID">
+        </label>
+        <input type="text" name="Product_ID" #Product_ID="ngModel" [(ngModel)]="commonService.selectedProduct.id" class="form-control" id="Product_ID">
     </div>
 
     <div class="mb-4">
-        <input type="hidden" name="_id"  #id="ngModel"  [(ngModel)]="commonService.selectedProduct._id"
-            class="form-control">
+        <input type="hidden" name="_id" #id="ngModel" [(ngModel)]="commonService.selectedProduct._id" class="form-control">
         <label for="safranal_content" class="form-label">
             <h6>Safranal Content</h6>
         </label>
-        <input type="text" name="safranal_content" #safranal_content="ngModel"  [(ngModel)]="commonService.selectedProduct.safranal_content"
-            class="form-control" id="safranal_content">
+        <input type="text" name="safranal_content" #safranal_content="ngModel" [(ngModel)]="commonService.selectedProduct.safranal_content" class="form-control" id="safranal_content">
     </div>
     <div class="mb-4">
         <label for="Grade" class="form-label">
             <h6>Grade</h6>
         </label>
-        <input type="text" name="Grade" #grade="ngModel"  [(ngModel)]="commonService.selectedProduct.grade"
-            class="form-control" id="grade">
+        <input type="text" name="Grade" #grade="ngModel" [(ngModel)]="commonService.selectedProduct.grade" class="form-control" id="grade">
     </div>
 
     <div class="mb-4">
         <label for="Price" class="form-label">
             <h6>Price</h6>
         </label>
-        <input type="text" name="price" #price="ngModel"  [(ngModel)]="commonService.selectedProduct.price"
-            class="form-control" id="price">
+        <input type="text" name="price" #price="ngModel" [(ngModel)]="commonService.selectedProduct.price" class="form-control" id="price">
     </div>
 
     <button type="submit" (click)="add_product_wrapper(myForm)" class="btn btn-success">Add product</button>

@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  slideIndex = 1;
+
+  constructor(private router: Router) {
+   
+   }
 
   ngOnInit(): void {
     if(localStorage.getItem("Role") == 'Farmer')
@@ -31,7 +35,36 @@ export class DashboardComponent implements OnInit {
     {
       this.router.navigate(['/verifier-page']);
     }
+
+    
+    this.showSlides(this.slideIndex);
+}
+
+// Next/previous controls
+plusSlides(n) {
+  this.showSlides(this.slideIndex += n);
+}
+
+// Thumbnail image controls
+currentSlide(n) {
+  this.showSlides(this.slideIndex = n);
+}
+
+showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
+  let dots = document.getElementsByClassName("dot") as HTMLCollectionOf<HTMLElement>;
+  if (n > slides.length) {this.slideIndex = 1}
+  if (n < 1) {this.slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
   }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[this.slideIndex-1].style.display = "block";
+  dots[this.slideIndex-1].className += " active";
+}
 
   
   go_to_order_scheduling() {
