@@ -112,12 +112,13 @@ export class TrackAProductComponent implements OnInit {
 
   async show_loading() {
     const div = document.createElement('div');
+    // const div = document.getElementById('loader');
     div.className = 'spinner-border text-danger';
     div.style.marginTop = '10px';
     div.style.marginLeft = '100px';
     div.innerHTML = `<center><span class="sr-only"></span>
   </center>`
-    document.getElementById('spg').appendChild(div);
+    document.getElementById('loader').appendChild(div);
     return new Promise(done => setTimeout(() => {
       div.remove();
     }, 2000)).then(() => { });

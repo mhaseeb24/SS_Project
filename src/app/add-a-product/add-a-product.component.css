@@ -5,3 +5,12 @@
 .form-control {
     width: 250px;
 }
+
+form {
+    margin-bottom: 20px;
+}
+
+button {
+    margin: auto;
+    width: 100%;
+}

@@ -1,7 +1,22 @@
-form {
-    margin: auto;
-    width: 360px;
+.alert-wrapper {
+    height: 100px;
 }
+
+.form-control {
+    width: 100%;
+}
+
+form {
+    margin-bottom: 20px;
+    max-width: 360px;
+    margin: auto;
+}
+
+
+/* button {
+    margin: auto;
+    width: 100%;
+} */
 
 ::ng-deep .table {
     margin-top: 25px;

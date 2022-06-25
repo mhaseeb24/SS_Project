@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
     curr_user.password = myForm.password;
 
 
-    // curr_user.email = 'abc@xyz.com';
-    // // curr_user.role = 'Farmer';
-    // curr_user.role = 'Customer';
-    // this.userService.user.next(curr_user);
+    curr_user.email = 'abc@xyz.com';
+    // curr_user.role = 'Farmer';
+    curr_user.role = 'Customer';
+    this.userService.user.next(curr_user);
 
     this.commonService.checkUser(curr_user).subscribe((res) =>{
       localStorage.setItem("userLoggedIn", curr_user.email);
