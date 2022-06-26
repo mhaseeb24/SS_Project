@@ -252,30 +252,49 @@ export class TrackAProductComponent implements OnInit {
       <thead>
         <tr>
           <th>Product ID</th>
-          <th>Sendor</th>
+          <th>Sender</th>
           <th>Reciever</th>
           <th>Tx Hash</th>
           <th>Amount</th>
         </tr>
       </thead>
+      <tbody>
+      <tr>
+        <td>${id}</td>
+        <td>${res[0].sender}</td>
+        <td>${res[0].receiver}</td>
+        <td>${res[0].hash}</td>
+        <td>${res[0].amount}</td>
+      </tr>
+      <tr>
+        <td>${id}</td>
+        <td>${res[1].sender}</td>
+        <td>${res[1].receiver}</td>
+        <td>${res[1].hash}</td>
+        <td>${res[1].amount}</td>
+      </tr>
+      <tr>
+        <td>${id}</td>
+        <td>${res[2].sender}</td>
+        <td>${res[2].receiver}</td>
+        <td>${res[2].hash}</td>
+        <td>${res[2].amount}</td>
+      </tr>
+      <tr>
+        <td>${id}</td>
+        <td>${res[3].sender}</td>
+        <td>${res[3].receiver}</td>
+        <td>${res[3].hash}</td>
+        <td>${res[3].amount}</td>
+      </tr>
+    </tbody>
+
     </table>
     </center>
     `;
-
-    var table = document.createElement('table'), tr, td, row, cell;
-for (row = 0; row < 10; row++) {
-    tr = document.createElement('tr');
-    for (cell = 0; cell < 22; cell++) {
-        td = document.createElement('td');
-        tr.appendChild(td);
-        td.innerHTML = row * 22 + cell + 1;
-    }
-    table.appendChild(tr);
-}
-document.getElementById('container').appendChild(table);
     
       document.getElementById('spg').appendChild(div);}, 1100);
-    console.log(data.length)});
+    console.log(data)});
     
 
     
