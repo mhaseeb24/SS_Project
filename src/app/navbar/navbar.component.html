@@ -22,7 +22,9 @@
                         <li><a class="dropdown-item" *ngIf="userRole == 'Farmer'" routerLink="/add-product">
                           Add a Product</a>
                         </li>
-                        <li><a class="dropdown-item" *ngIf="userRole == 'Distributor' || userRole == 'Retailer' || userRole == 'Customer' || userRole == 'Consumer'" routerLink="/buy-product">Buy a Product</a></li>
+                        <li><a class="dropdown-item" *ngIf="userRole == 'Consumer' || userRole == 'Customer'" routerLink="/buy-product">Buy a Product</a></li>
+                        <li><a class="dropdown-item" *ngIf="userRole == 'Distributor' " routerLink="/sell-to-distributor">Buy from Farmer</a></li>
+                        <li><a class="dropdown-item" *ngIf="userRole == 'Retailer' " routerLink="/sell-to-retailer">Buy from Distributor</a></li>
                         <li><a class="dropdown-item" *ngIf="userRole == 'Farmer' || userRole == 'Distributor' || userRole == 'Retailer' || userRole == 'Customer' || userRole == 'Consumer'" routerLink="/track-product">Track a Product</a></li>
                         <li><a class="dropdown-item" *ngIf="userRole == 'Distributor' || userRole == 'Retailer' || userRole == 'Customer' || userRole == 'Consumer'" routerLink="/verify-product">Verify a Product</a></li>
                         <li><a class="dropdown-item" *ngIf="userRole == 'Customer' || userRole == 'Consumer'" routerLink="/verifier-page">Verify a Transaction</a></li>

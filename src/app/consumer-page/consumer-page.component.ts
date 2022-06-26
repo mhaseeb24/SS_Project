@@ -19,12 +19,12 @@ export class ConsumerPageComponent implements OnInit {
 
   go_to_buy_product_page()
   {
-    this.router.navigateByUrl('/buy-a-product');
+    this.router.navigateByUrl('/buy-product');
   }
 
   go_to_verify_page()
   {
-    this.router.navigateByUrl('/verify');
+    this.router.navigateByUrl('/verify-product');
   }
 
 }

@@ -23,5 +23,10 @@ export class RetailerPageComponent implements OnInit {
     this.router.navigateByUrl('/sell-to-retailer');
   }
 
+  go_to_verify_product_page()
+  {
+    this.router.navigateByUrl('/verify-product')
+  }
+
 
 }

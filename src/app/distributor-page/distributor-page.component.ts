@@ -23,4 +23,9 @@ export class DistributorPageComponent implements OnInit {
     this.router.navigateByUrl('/track-product');
   }
 
+  go_to_verify_product_page()
+  {
+    this.router.navigateByUrl('/verify-product')
+  }
+
 }

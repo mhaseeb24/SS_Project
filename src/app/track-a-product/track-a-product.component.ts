@@ -32,6 +32,15 @@ export class TrackAProductComponent implements OnInit {
 
   ngOnInit() {
     // this.setProductDiv()
+    this.metamask.watchAccount();
+    //this._add = this.metamask.model.account; 
+    this.web3Service.artifactsToContract(artifacts)
+      .then((contract_instance) => {
+        this.supply_chain_contract = contract_instance;
+        this.supply_chain_contract.deployed().then(deployed => {
+          console.log(deployed);
+        });
+      });
   }
 
   async track_product(myForm: NgForm) {
@@ -45,6 +54,20 @@ export class TrackAProductComponent implements OnInit {
     let id = ((parseInt(myForm.value.Product_ID)));
     setTimeout(() => {
       this.check_product(id);
+    }, 2100);
+  }
+
+  async show_history_wrapper(myForm: NgForm) {
+    try {
+      const div = document.getElementById('div');
+      div.remove();
+    } catch (e) {
+      console.log(e);
+    }
+    this.show_loading();
+    let id = (((myForm.value.Product_ID)));
+    setTimeout(() => {
+      this.get_tx(myForm);
     }, 2100);
   }
 
@@ -209,7 +232,50 @@ export class TrackAProductComponent implements OnInit {
 
   get_tx(myForm) {
     let id = myForm.value.Product_ID;
-    this.commonService.get_transaction(id).subscribe((res) => {console.log(res[1])});
+    this.commonService.get_transaction(id).subscribe((res) => {
+  //     setTimeout(() => {
+      
+  //     let div;
+  
+  //     div = document.createElement('div');
+  //     div.setAttribute("id", "div");
+  
+  //     // const main = document.getElementById('main-content');
+  //     // main.style.height = '120vh';
+  
+  //     div.className = 'row';
+  //     div.style.marginTop = '10px'
+  
+  //     div.innerHTML = `
+  //     <center><table class="table"  id = "table">
+  //     <thead>
+  //       <tr>
+  //         <th>Product ID</th>
+  //         <th>Sendor</th>
+  //         <th>Reciever</th>
+  //         <th>Tx Hash</th>
+  //         <th>Amount</th>
+  //       </tr>
+  //     </thead>
+  //   </table>
+  //   </center>
+  //   `;
+  //   console.log(res[0])
+  //   for (var row = 0; row < res[0].length; row++) {
+  //     tr = document.createElement('tr');
+  //     for (cell = 0; cell < 22; cell++) {
+  //         td = document.createElement('td');
+  //         tr.appendChild(td);
+  //         td.innerHTML = row * 22 + cell + 1;
+  //     }
+  //     table.appendChild(tr);
+  // }
+  // document.getElementById('container').appendChild(table);
+  //     document.getElementById('spg').appendChild(div);}, 1100);
+    console.log(res)});
+
+
+    
   }
 
   setProductDiv(){
