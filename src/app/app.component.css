@@ -4,6 +4,7 @@
     /* height: 100vh; */
     width: 100vw;
     overflow: hidden;
+    background-image: url("../assets/images/1267583.jpg");
 }
 
 .app-footer {

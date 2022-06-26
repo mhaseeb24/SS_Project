@@ -189,11 +189,11 @@ export class TrackAProductComponent implements OnInit {
         <th>Safranal Content</th>
         <th>Grade</th>
         <th>Current Owner</th>
-        <th>Farmer Address</th>
+        <th>Farmer Name</th>
         <th>Farmer Rating</th>
-        <th>Distributor Address</th>
+        <th>Distributor Name</th>
         <th>Distributor Rating</th>
-        <th>Retailer Address</th>
+        <th>Retailer Name</th>
         <th>Retailer Rating</th>
         <th>Consumer Address</th>
         <th>Product State</th>
@@ -233,47 +233,50 @@ export class TrackAProductComponent implements OnInit {
   get_tx(myForm) {
     let id = myForm.value.Product_ID;
     this.commonService.get_transaction(id).subscribe((res) => {
-  //     setTimeout(() => {
+      let data = res as [];
+      setTimeout(() => {
       
-  //     let div;
+      let div;
   
-  //     div = document.createElement('div');
-  //     div.setAttribute("id", "div");
+      div = document.createElement('div');
+      div.setAttribute("id", "div");
   
-  //     // const main = document.getElementById('main-content');
-  //     // main.style.height = '120vh';
+      // const main = document.getElementById('main-content');
+      // main.style.height = '120vh';
   
-  //     div.className = 'row';
-  //     div.style.marginTop = '10px'
+      div.className = 'row';
+      div.style.marginTop = '10px'
   
-  //     div.innerHTML = `
-  //     <center><table class="table"  id = "table">
-  //     <thead>
-  //       <tr>
-  //         <th>Product ID</th>
-  //         <th>Sendor</th>
-  //         <th>Reciever</th>
-  //         <th>Tx Hash</th>
-  //         <th>Amount</th>
-  //       </tr>
-  //     </thead>
-  //   </table>
-  //   </center>
-  //   `;
-  //   console.log(res[0])
-  //   for (var row = 0; row < res[0].length; row++) {
-  //     tr = document.createElement('tr');
-  //     for (cell = 0; cell < 22; cell++) {
-  //         td = document.createElement('td');
-  //         tr.appendChild(td);
-  //         td.innerHTML = row * 22 + cell + 1;
-  //     }
-  //     table.appendChild(tr);
-  // }
-  // document.getElementById('container').appendChild(table);
-  //     document.getElementById('spg').appendChild(div);}, 1100);
-    console.log(res)});
+      div.innerHTML = `
+      <center><table class="table"  id = "table">
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Sendor</th>
+          <th>Reciever</th>
+          <th>Tx Hash</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+    </table>
+    </center>
+    `;
 
+    var table = document.createElement('table'), tr, td, row, cell;
+for (row = 0; row < 10; row++) {
+    tr = document.createElement('tr');
+    for (cell = 0; cell < 22; cell++) {
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.innerHTML = row * 22 + cell + 1;
+    }
+    table.appendChild(tr);
+}
+document.getElementById('container').appendChild(table);
+    
+      document.getElementById('spg').appendChild(div);}, 1100);
+    console.log(data.length)});
+    
 
     
   }
